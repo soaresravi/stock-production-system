@@ -1,6 +1,9 @@
 package com.stock.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity //table in db
 @Table(name = "product") //name (optional, default is the class name) 
@@ -19,6 +22,12 @@ public class Product {
 
     @Column(nullable = false)
     private Double price;
+
+    @OneToMany //one product can have many raw material associations
+    (mappedBy = "product", //productRawMaterial owns fk. product is the boss
+    cascade = CascadeType.ALL, orphanRemoval = true) //if save/delete/update a product the sames propagated to its associations
+    @JsonIgnore
+    private List<ProductRawMaterial> rawMaterials = new ArrayList<>(); //array 
 
     public Product() {} //builders
 
@@ -39,4 +48,7 @@ public class Product {
 
     public Double getPrice() { return price; }
     public void setPrice(Double price) { this.price = price; }
+
+    public List<ProductRawMaterial> getRawMaterials() { return rawMaterials; }
+    public void setRawMaterials(List<ProductRawMaterial> rawMaterials) { this.rawMaterials = rawMaterials; }
 }
