@@ -41,11 +41,18 @@ public class ProductResource {
     }
 
     @POST
-    @Transactional //create (transactional means this operation ll modify db)
+    @Transactional
+    
+    public Response create(Product product) {
 
-    public Response create(Product product) { //json converted to java object
-        productRepository.persist(product); //save to db
-        return Response.status(Response.Status.CREATED).entity(product).build(); //created + the saved product (with generated id)
+        Product existing = productRepository.find("code", product.getCode()).firstResult(); //check for product with the same unique code
+       
+        if (existing != null) {
+            return Response.status(Response.Status.CONFLICT).entity("Product with code " + product.getCode() + " already exists").build();
+        }
+        
+        productRepository.persist(product);
+        return Response.status(Response.Status.CREATED).entity(product).build();
     }
 
     @PUT

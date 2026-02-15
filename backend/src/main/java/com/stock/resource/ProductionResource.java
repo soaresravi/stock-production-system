@@ -38,9 +38,9 @@ public class ProductionResource {
         allProducts.sort((p1, p2) -> p2.getPrice().compareTo(p1.getPrice()));
 
         Map<Long, Integer> avaliableStock = rawMaterialRepository.listAll().stream().collect(Collectors.toMap(RawMaterial::getId,
-        RawMaterial::getStockQuantity)); //get current stock
+        RawMaterial::getStockQuantity)); //create a temporary map of current stock
 
-        Map<Long, List<ProductRawMaterial>> productMaterials = new HashMap<>(); //map to store product associations
+        Map<Long, List<ProductRawMaterial>> productMaterials = new HashMap<>(); //map to store product associations to avoid multiple db hits
 
         for (Product product : allProducts) {
             List<ProductRawMaterial> materials = productRawMaterialRepository.findByProductId(product.getId());
@@ -70,7 +70,7 @@ public class ProductionResource {
                 }
             }
 
-            if (maxPossible > 0 && maxPossible < Integer.MAX_VALUE) { //if can produce at least 1 unit
+            if (maxPossible > 0 && maxPossible < Integer.MAX_VALUE) { //if production if feasible add to list and update stock
 
                 suggestions.add(new ProductionSuggestion(
                     product.getId(),
@@ -79,7 +79,7 @@ public class ProductionResource {
                     maxPossible
                 ));
 
-                for (ProductRawMaterial prm : materials) {
+                for (ProductRawMaterial prm : materials) { //deduct the used materials from the stock map for calculations
                     Long materialId = prm.getRawMaterial().getId();
                     int used = prm.getQuantityNeeded() * maxPossible;
                     avaliableStock.put(materialId, avaliableStock.get(materialId) - used);
