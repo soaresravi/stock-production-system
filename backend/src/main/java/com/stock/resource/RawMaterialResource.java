@@ -44,7 +44,16 @@ public class RawMaterialResource {
     @Transactional
 
     public Response create(RawMaterial material) {
+
+        RawMaterial existing = rawMaterialRepository.find("code", material.getCode()).firstResult();
+
+        if (existing != null) {
+            return Response.status(Response.Status.CONFLICT).entity("Raw material with code " + material.getCode() + " already exists").build();
+        }
+        
         rawMaterialRepository.persist(material);
+        rawMaterialRepository.flush();
+        
         return Response.status(Response.Status.CREATED).entity(material).build();
     }
 
