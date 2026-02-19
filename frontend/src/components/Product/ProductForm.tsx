@@ -3,6 +3,7 @@ import { Form, Button, Card, FormGroup } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { createProduct, updateProduct, fetchProducts } from '../../store/productSlice';
+import ProductAssociations from './ProductAssociations';
 
 const ProductForm: React.FC = () => {
 
@@ -98,6 +99,17 @@ const ProductForm: React.FC = () => {
 
                 </Form>
             </Card.Body>
+
+            {id && (
+            
+            <>
+            
+            <hr className="my-4" />
+            <ProductAssociations productId={parseInt(id)} />
+            
+            </>
+            
+            )}
         </Card>
     );
 };
