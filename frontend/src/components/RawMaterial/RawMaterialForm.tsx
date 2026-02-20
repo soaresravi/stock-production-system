@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Card, FormGroup, FormControl } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { createRawMaterial, updateRawMaterial, fetchRawMaterials } from '../../store/rawMaterialSlice';
+import { createRawMaterial, updateRawMaterial } from '../../store/rawMaterialSlice';
 
 const RawMaterialForm: React.FC = () => {
 
@@ -77,17 +77,17 @@ const RawMaterialForm: React.FC = () => {
 
                     <FormGroup className='mb-3'>
                         <Form.Label> Código </Form.Label>
-                        <FormControl type='text' name='code' value={formData.code} onChange={handleChange} required placeholder='Digite o código da matéria prima' />
+                        <FormControl type='text' name='code' value={formData.code} onChange={handleChange} required placeholder='Digite o código da matéria-prima' />
                     </FormGroup>
 
                     <FormGroup className='mb-3'>
                         <Form.Label> Nome </Form.Label>
-                        <Form.Control type='text' name='name' value={formData.name} onChange={handleChange} required placeholder='Digite o nome da matéria prima' />
+                        <Form.Control type='text' name='name' value={formData.name} onChange={handleChange} required placeholder='Digite o nome da matéria-prima' />
                     </FormGroup>
 
                     <FormGroup className='mb-3'>
                         <Form.Label> Quantidade </Form.Label>
-                        <Form.Control type='number' name='stockQuantity' onChange={handleChange} required min='0' step='1' placeholder='Digite a quantidade em estoque' />
+                        <Form.Control type='number' name='stockQuantity' value={formData.stockQuantity} onChange={handleChange} required min='0' step='1' placeholder='Digite a quantidade em estoque' />
                     </FormGroup>
 
                     <div className='d-flex gap-2'>

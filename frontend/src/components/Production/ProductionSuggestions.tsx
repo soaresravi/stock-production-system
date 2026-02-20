@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Table, Card, Spinner, Alert, Badge, CardSubtitle } from 'react-bootstrap';
+import { Table, Card, Spinner, Alert, Badge } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchSuggestions } from '../../store/productionSlice';
-import { useNavigate } from 'react-router-dom';
 
 const ProductionSuggestions: React.FC = () => {
 
@@ -23,7 +22,7 @@ const ProductionSuggestions: React.FC = () => {
                     <span className='visually-hidden'> Calculando sugestões... </span>
                 </Spinner>
 
-                <p className='mt-2'> Calculando melhoroes sugestões de produção </p>
+                <p className='mt-2'> Calculando melhores sugestões de produção </p>
            
             </div>
 

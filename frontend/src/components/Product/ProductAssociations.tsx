@@ -3,7 +3,6 @@ import { Table, Button, Form, Modal, Alert } from 'react-bootstrap';
 import { useAppSelector } from '../../store/hooks';
 import { productAssociationService } from '../../services/productAssociationService';
 import { ProductRawMaterial, RawMaterial } from '../../types';
-import { setSelectedMaterial } from '../../store/rawMaterialSlice';
 
 interface ProductAssociationProps {
     productId: number;
