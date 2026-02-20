@@ -1,81 +1,248 @@
-# Estoque Produtos System 
-Sistema para controle de estoque e sugestão de produtos
+# 🏭 Sistema de estoque e produção
 
----
-# Teste prático da Projedata - Autoflex
+<div align="center">
 
-## Descrição do problema:
+### Sistema completo para controle de estoque e sugestão de produção com priorização por valor
 
-Uma indústria que produz produtos diversos, necessita controlar o estoque dos insumos (matérias-primas) necessárias para a produção dos itens que fabrica. Para isso será necessário o desenvolvimento de um sistema que permita manter o controle dos produtos e das matérias-primas que são utilizadas para a produção de cada produto.
+[![Quarkus](https://img.shields.io/badge/Quarkus-3.31.3-4695EB?style=for-the-badge&logo=quarkus)](https://quarkus.io/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![Redux](https://img.shields.io/badge/Redux-9.2-764ABC?style=for-the-badge&logo=redux)](https://redux.js.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql)](https://www.mysql.com/)
+[![Cypress](https://img.shields.io/badge/Cypress-15.10-17202C?style=for-the-badge&logo=cypress)](https://www.cypress.io/)
 
-Para o produto devem ser armazenados, além do código, o nome e o valor.
-
-Para as matérias-primas, além do código, também devem armazenados o nome e quantidade em estoque. Obviamente, deverá ser feito a associação dos produtos e das matérias primas que o compõem, com as respectivas quantidades necessárias de cada matéria prima para produzir o produto.
-
-Além da manutenção dos cadastros, deseja-se saber quais produtos (e quais quantidades) podem ser produzidos com as matérias-primas em estoque, e o valor total que será obtido com a produção sugerida pelo sistema.
-
-A priorização de quais produtos devem ser sugeridos pelo sistema, deve ser pelos produtos de maior valor, uma vez que uma determinada matéria-prima pode ser utilizada em mais de um produto.
+</div>
 
 ---
 
-## Requisitos:
+## 📋 Índice
 
-### Requisitos não funcionais
-
-1. **RNF001** | O sistema deverá ser desenvolvido para a plataforma WEB, sendo possível a execução nos principais navegadores (Chrome, Firefox, Edge).
-
-2. **RNF002** | O sistema deverá ser construído utilizando o conceito de API, ou seja, separar o back-end do front-end.
-
-3. **RNF003** | As telas desenvolvidas no front-end devem utilizar os recursos de responsividade.
-
-4. **RNF004** | A persistência de dados deve ser realizada em Sistema Gerenciador de Banco de Dados, com a possibilidade de utilizar Postgres, MySql ou Oracle. Caso tenha instalado o Oracle, a sugestão é utilizá-lo.
-
-5. **RNF005** | O back-end (API) deve ser desenvolvido utilizando algum framework, como Spring, Quarkus ou similar. Caso você conheça Quarkus, a sugestão é que aplique já que é uma das tecnologias utilizadas no Autoflex.
-
-6. **RNF006** | O front-end pode ser desenvolvido utilizando qualquer linguagem ou framework que possibilite o atendimento dos requisitos. Caso você conheça React e Redux, a sugestão é que aplique já que são tecnologias utilizadas no Autoflex.
-
-7. **RNF007** | Tanto a codificação do back-end, front-end, tabelas e colunas do banco de dados devem ser desenvolvidas utilizando a língua inglesa.
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Tecnologias](#-tecnologias)
+- [Funcionalidades](#-funcionalidades)
+- [Pré-requisitos](#-pré-requisitos)
+- [Como Executar](#-como-executar)
+- [Testes](#-testes)
+- [API Endpoints](#-api-endpoints)
+- [Demonstração](#-demonstração)
+- [Requisitos atendidos](#-requisitos-atendidos)
+- [Autor](#-autor)
 
 ---
 
-### Requisitos funcionais
+## 🎯 Sobre o Projeto
 
-1. **RF001** | Desenvolver no back-end as funcionalidades CRUD para manter o cadastro de produtos.
+Este sistema foi desenvolvido como parte de um teste prático para a **Projedata - Autoflex**. O objetivo é gerenciar o estoque de matérias-primas e sugerir quais produtos podem ser produzidos com priorização pelos de maior valor.
 
-2. **RF002** | Desenvolver no back-end as funcionalidades CRUD para manter o cadastro de matérias primas.
+### O problema
 
-3. **RF003** | Desenvolver no back-end as funcionalidades CRUD para associar matérias-primas aos produtos.
-
-4. **RF004** | Desenvolver no back-end as funcionalidades para a consulta dos produtos que podem ser produzidos com as matérias-primas disponíveis em estoque.
-
-5. **RF005** | Desenvolver no front-end uma interface gráfica que possibilite realizar as operações CRUD para manter o cadastro de produtos.
-
-6. **RF006** | Desenvolver no front-end uma interface gráfica que possibilite realizar as operações CRUD para manter o cadastro de matérias primas.
-
-7. **RF007** | Desenvolver no front-end uma interface gráfica que possibilite realizar as operações CRUD para associar matérias-primas aos produtos. Não há a necessidade de ser uma tela separada, podendo ser inserida a interface no cadastro de produtos.
-
-8. **RF008** | Desenvolver no front-end uma interface gráfica que possibilite listar quais produtos (e quais quantidades) podem ser produzidos com as matérias-primas disponíveis em estoque.
+Uma indústria precisa controlar:
+- 📦 **Produtos**: código, nome e valor
+- 🪵 **Matérias-primas**: código, nome e quantidade em estoque
+- 🔗 **Associações**: quais matérias-primas cada produto utiliza e em quais quantidades
+- 💡 **Sugestões**: quais produtos podem ser produzidos com o estoque atual, priorizando os de maior valor
 
 ---
 
-### Desejável:
+## 🚀 Tecnologias
 
-- Desenvolvimento de testes unitários para o back-end e para o front-end
+### Back-end
+| Tecnologia | Descrição | 
+|------------|--------|
+| [Quarkus](https://quarkus.io/) | Framework Java para microserviços |
+| [Hibernate ORM](https://hibernate.org/) | Mapeamento objeto-relacional |
+| [MySQL](https://www.mysql.com/) | Banco de dados relacional |
+| [RESTEasy Reactive](https://quarkus.io/guides/resteasy-reactive) | - | API REST |
+| [Swagger/OpenAPI](https://swagger.io/) | - | Documentação da API |
 
-- Desenvolvimento de testes de integração. Caso tenha conhecimento da tecnologia Cypress, a sugestão é utilizá-la já que utilizamos no Autoflex.
+### Front-end
+| Tecnologia | Descrição |
+|------------|--------|
+| [React](https://reactjs.org/) | Biblioteca para interfaces |
+| [Redux Toolkit](https://redux-toolkit.js.org/) | Gerenciamento de estado |
+| [TypeScript](https://www.typescriptlang.org/) | Superset tipado do JavaScript |
+| [Bootstrap](https://getbootstrap.com/) | Framework CSS |
+| [React Router](https://reactrouter.com/) | Roteamento |
+| [Axios](https://axios-http.com/) | Cliente HTTP |
+
+### Testes
+| Tecnologia | Descrição |
+|------------|--------|
+| [JUnit](https://junit.org/) | Testes unitários (back-end) |
+| [Jest](https://jestjs.io/) | Testes unitários (front-end) |
+| [Cypress](https://www.cypress.io/) | Testes de integração E2E |
+
+### Fontes
+- **Alatsi**: Títulos e cabeçalhos
+- **Cabin**: Textos e labels
 
 ---
 
-## Tecnologias escolhidas
+## ✨ Funcionalidades
 
-**Back-end:** Quarkus
+### **CRUD completo**
+- [x] Cadastro de produtos
+- [x] Cadastro de matérias-primas
+- [x] Associações entre produtos e matérias-primas
 
-**Banco:** MySQL
+### **Lógica inteligente**
+- [x] Sugestão de produção baseada no estoque atual
+- [x] Priorização automática pelos produtos de maior valor
+- [x] Cálculo do valor total da produção sugerida
 
-**Front-end:** React + Redux
+### **Interface moderna**
+- [x] Design responsivo (mobile/tablet/desktop)
+- [x] Paleta de cores Projedata (azul, roxo, verde)
+- [x] Componentes estilizados com animações
+- [x] Feedback visual para ações do usuário
 
-Testes requisitados com **Cypress**
+### **Qualidade garantida**
+- [x] Testes unitários (JUnit + Jest)
+- [x] Testes de integração (Cypress)
+- [x] Código 100% em inglês
+- [x] Documentação completa
 
 ---
 
-**Status:** em desenvolvimento
+## 📋 Pré-requisitos
+
+Antes de começar, você precisará ter instalado:
+
+- [Java 17+](https://adoptium.net/)
+- [Maven 3.9+](https://maven.apache.org/)
+- [Node.js 18+](https://nodejs.org/)
+- [MySQL 8.0+](https://www.mysql.com/) (ou XAMPP)
+- [Git](https://git-scm.com/)
+
+---
+
+## 🚀 Como Executar
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/soaresravi/estoque-producao-system.git
+cd estoque-producao-system
+```
+
+### 2. Configure o Banco de Dados
+
+```sql
+CREATE DATABASE stock_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### 3. Back-end (Quarkus)
+
+```
+cd backend
+# Configure o banco em src/main/resources/application.properties
+# quarkus.datasource.username=root
+# quarkus.datasource.password=sua_senha
+
+# Execute em modo desenvolvimento
+./mvnw quarkus:dev
+```
+- API estará disponível em: http://localhost:8080
+- Swagger UI: http://localhost:8080/q/swagger-ui/
+
+### 4. Front-end (React)
+
+```
+cd frontend
+# Instale as dependências
+npm install
+
+# Execute
+npm start
+```
+- A aplicação estará disponível em: http://localhost:3000
+
+---
+
+## 🧪 Testes
+
+Back-end (JUnit)
+```
+cd backend
+./mvnw test
+```
+
+Front-end (Jest)
+```
+cd frontend
+npm test
+```
+
+Integração
+```
+# Abrir interface gráfica
+npx cypress open
+
+# Rodar em modo headless
+npx cypress run
+```
+
+---
+
+## 📡 API Endpoints
+
+### Produtos
+| Método | Endpoint | Descrição |
+|:---:|:---|:---|
+| `GET` | `/api/products` | Lista todos os produtos |
+| `GET` | `/api/products/{id}` | Busca produto por ID |
+| `POST` | `/api/products` | Cria novo produto |
+| `PUT` | `/api/products/{id}` | Atualiza produto |
+| `DELETE` | `/api/products/{id}` | Remove produto |
+
+### Matérias-primas
+| Método | Endpoint | Descrição |
+|:---:|:---|:---|
+| `GET` | `/api/raw-materials` | Lista todas as matérias-primas |
+| `GET` | `/api/raw-materials/{id}` | Busca matéria-prima por ID |
+| `POST` | `/api/raw-materials` | Cria nova matéria-prima |
+| `PUT` | `/api/raw-materials/{id}` | Atualiza matéria-prima |
+| `DELETE` | `/api/raw-materials/{id}` | Remove matéria-prima |
+
+---
+
+## 📊 Demonstração
+
+### Exemplo de Cálculo
+**Estoque disponível:**
+* **Wood:** 100 unidades
+* **Nails:** 500 unidades
+* **Paint:** 50 unidades
+
+**Produtos:**
+* **Luxury Chair (R$ 299,90):** 8 Wood, 30 Nails, 2 Paint
+* **Another Product (R$ 149,90):** 2 Wood
+
+**Resultado da sugestão:**
+| Produto | Quantidade | Valor Total |
+|:---|:---:|:---|
+| Luxury Chair | 12 | R$ 3.598,80 |
+| Another Product | 2 | R$ 299,80 |
+| **TOTAL** | | **R$ 3.898,60** |
+
+---
+
+## ✅ Requisitos atendidos
+
+### Requisitos Funcionais
+- [x] **RF001**: CRUD Produtos (back-end)
+- [x] **RF002**: CRUD Matérias-primas (back-end)
+- [x] **RF003**: CRUD Associações (back-end)
+- [x] **RF004**: Consulta de produção (back-end)
+- [x] **RF005**: CRUD Produtos (front-end)
+- [x] **RF006**: CRUD Matérias-primas (front-end)
+- [x] **RF007**: CRUD Associações (front-end)
+- [x] **RF008**: Listagem de sugestões
+
+---
+
+## 👨‍💻 Autor
+
+**Ravi Soares** - Desenvolvedor Full Stack
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/soaresravi)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/ravi-brocco-soares-03a29827a/)
