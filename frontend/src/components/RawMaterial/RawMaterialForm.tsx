@@ -3,6 +3,7 @@ import { Form, Button, Card, FormGroup, FormControl } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { createRawMaterial, updateRawMaterial } from '../../store/rawMaterialSlice';
+import '../../styles/rawMaterials.scss';
 
 const RawMaterialForm: React.FC = () => {
 
@@ -67,30 +68,30 @@ const RawMaterialForm: React.FC = () => {
 
     return (
 
-        <Card>
+        <Card className='raw-material-form-card'>
 
-            <Card.Header> <h2> {id ? 'Editar matéria-prima' : 'Nova matéria-prima'} </h2> </Card.Header>
+            <Card.Header className='raw-material-form-header'> <h2> {id ? 'Editar matéria-prima' : 'Nova matéria-prima'} </h2> </Card.Header>
 
-            <Card.Body>
+            <Card.Body className='raw-material-form-body'>
 
                 <Form onSubmit={handleSubmit}>
 
-                    <FormGroup className='mb-3'>
+                    <FormGroup className='raw-material-form-group'>
                         <Form.Label> Código </Form.Label>
                         <FormControl type='text' name='code' value={formData.code} onChange={handleChange} required placeholder='Digite o código da matéria-prima' />
                     </FormGroup>
 
-                    <FormGroup className='mb-3'>
+                    <FormGroup className='raw-material-form-group'>
                         <Form.Label> Nome </Form.Label>
                         <Form.Control type='text' name='name' value={formData.name} onChange={handleChange} required placeholder='Digite o nome da matéria-prima' />
                     </FormGroup>
 
-                    <FormGroup className='mb-3'>
+                    <FormGroup className='raw-material-form-group'>
                         <Form.Label> Quantidade </Form.Label>
                         <Form.Control type='number' name='stockQuantity' value={formData.stockQuantity} onChange={handleChange} required min='0' step='1' placeholder='Digite a quantidade em estoque' />
                     </FormGroup>
 
-                    <div className='d-flex gap-2'>
+                    <div className='raw-material-form-actions'>
                         <Button variant='primary' type='submit'> {id ? 'Atualizar' : 'Criar'} </Button>
                         <Button variant='secondary' onClick={() => navigate('/raw-materials')}> Cancelar </Button>
                     </div>

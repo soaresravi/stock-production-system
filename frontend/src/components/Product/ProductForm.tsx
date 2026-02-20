@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { createProduct, updateProduct } from '../../store/productSlice';
 import ProductAssociations from './ProductAssociations';
+import '../../styles/products.scss';
 
 const ProductForm: React.FC = () => {
 
@@ -69,30 +70,30 @@ const ProductForm: React.FC = () => {
 
     return (
 
-        <Card>
+        <Card className='product-form-card'>
             
-            <Card.Header> <h2> {id ? 'Editar produto' : 'Novo produto'} </h2> </Card.Header>
+            <Card.Header className='product-form-header'> <h2> {id ? 'Editar produto' : 'Novo produto'} </h2> </Card.Header>
            
-            <Card.Body>
+            <Card.Body className='product-form-body'>
                 
                 <Form onSubmit={handleSubmit}>
                     
-                    <FormGroup className='mb-3'>
+                    <FormGroup className='product-form-group'>
                         <Form.Label> Código </Form.Label>
                         <Form.Control type='text' name='code' value={formData.code} onChange={handleChange} required placeholder='Digite o código do produto' />
                     </FormGroup>
 
-                    <FormGroup className='mb-3'>
+                    <FormGroup className='product-form-group'>
                         <Form.Label> Nome </Form.Label>
                         <Form.Control type='text' name='name' value={formData.name} onChange={handleChange} required placeholder='Digite o nome do produto' />
                     </FormGroup>
 
-                    <FormGroup className='mb-3'>
+                    <FormGroup className='product-form-group'>
                         <Form.Label> Preço </Form.Label>
                         <Form.Control type='number' name='price' value={formData.price} onChange={handleChange} required step='0.01' min='0' placeholder='Digite o preço do produto' />
                     </FormGroup>
 
-                    <div className='d-flex gap-2'>
+                    <div className='product-form-actions'>
                         <Button variant='primary' type='submit'> {id ? 'Atualizar' : 'Criar'} </Button>
                         <Button variant='secondary' onClick={() => navigate('/products')}> Cancelar </Button>
                     </div>
@@ -104,7 +105,7 @@ const ProductForm: React.FC = () => {
             
             <>
             
-            <hr className="my-4" />
+            <hr className='product-form-divider' />
             <ProductAssociations productId={parseInt(id)} />
             
             </>

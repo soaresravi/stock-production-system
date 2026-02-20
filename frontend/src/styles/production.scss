@@ -1,0 +1,402 @@
+@import './theme';
+
+.production {
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 600), 
+        map-get($projedata-purple, 600),
+        map-get($projedata-green, 500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(135deg, 
+          map-get($projedata-green, 400), 
+          map-get($projedata-blue, 400));
+        border-radius: $border-radius-sm;
+      }
+    }
+  }
+
+  &-total-badge {
+    background: linear-gradient(135deg, 
+      map-get($projedata-green, 500), 
+      map-get($projedata-blue, 500)) !important;
+    border: none;
+    padding: 0.75rem 2rem !important;
+    border-radius: $border-radius-xl !important;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    box-shadow: $shadow-lg;
+    animation: pulse 2s infinite;
+
+    &::before {
+      content: '💰';
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  &-card {
+    border: none !important;
+    border-radius: $border-radius-xl !important;
+    box-shadow: $shadow-xl !important;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    animation: slideIn 0.5s ease-out;
+
+    .card-header {
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 50), 
+        map-get($projedata-purple, 50)) !important;
+      border-bottom: none !important;
+      padding: 1.5rem 2rem !important;
+
+      h5 {
+        color: map-get($projedata-purple, 700);
+        font-weight: 600;
+        margin: 0;
+        font-size: 1.25rem;
+      }
+    }
+
+    .card-body {
+      padding: 2rem !important;
+    }
+  }
+
+  &-table {
+    margin-bottom: 0 !important;
+
+    thead {
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 500), 
+        map-get($projedata-purple, 500)) !important;
+
+      th {
+        color: white !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        border: none !important;
+        padding: 1.25rem 1rem !important;
+
+        &:first-child {
+          border-top-left-radius: $border-radius-lg;
+        }
+
+        &:last-child {
+          border-top-right-radius: $border-radius-lg;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        transition: $transition-base;
+
+        &:hover {
+          background: map-get($projedata-blue, 50);
+          transform: scale(1.01);
+          box-shadow: $shadow-md;
+        }
+
+        td {
+          border-color: rgba(0,0,0,0.05) !important;
+          padding: 1.25rem 1rem !important;
+          vertical-align: middle;
+
+          &:first-child {
+            font-weight: 600;
+            color: map-get($projedata-purple, 700);
+          }
+
+          &:nth-child(2) {
+            color: map-get($projedata-blue, 600);
+            font-weight: 500;
+          }
+
+          &:nth-child(4) {
+            color: map-get($projedata-green, 600);
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    tfoot {
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 50), 
+        map-get($projedata-purple, 50));
+
+      td {
+        border: none !important;
+        padding: 1.25rem 1rem !important;
+        font-size: 1.1rem;
+
+        &:first-child {
+          font-weight: 600;
+          color: map-get($projedata-purple, 700);
+        }
+
+        &:last-child {
+          font-weight: 700;
+          color: map-get($projedata-green, 600);
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  &-quantity-badge {
+    background: linear-gradient(135deg, 
+      map-get($projedata-blue, 400), 
+      map-get($projedata-purple, 400)) !important;
+    border: none;
+    padding: 0.5rem 1rem !important;
+    border-radius: $border-radius-lg !important;
+    font-weight: 600 !important;
+    box-shadow: $shadow-sm;
+  }
+
+  &-info-card {
+    border: none !important;
+    border-radius: $border-radius-xl !important;
+    box-shadow: $shadow-lg !important;
+    overflow: hidden;
+
+    .card-header {
+      background: linear-gradient(135deg, 
+        map-get($projedata-purple, 500), 
+        map-get($projedata-blue, 500)) !important;
+      border-bottom: none !important;
+      padding: 1.25rem 2rem !important;
+
+      h5 {
+        color: white !important;
+        font-weight: 600;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &::before {
+          content: '📊';
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .card-body {
+      padding: 2rem !important;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, 
+          rgba(map-get($projedata-blue, 50), 0.5), 
+          rgba(map-get($projedata-purple, 50), 0.5));
+        border-radius: $border-radius-lg;
+        border-left: 4px solid map-get($projedata-green, 400);
+        transition: $transition-base;
+
+        &:hover {
+          transform: translateX(5px);
+          background: linear-gradient(135deg, 
+            rgba(map-get($projedata-blue, 100), 0.5), 
+            rgba(map-get($projedata-purple, 100), 0.5));
+        }
+
+        strong {
+          color: map-get($projedata-purple, 700);
+        }
+      }
+    }
+  }
+
+  &-empty-state {
+    text-align: center;
+    padding: 4rem;
+    background: linear-gradient(135deg, 
+      rgba(map-get($projedata-blue, 50), 0.8), 
+      rgba(map-get($projedata-purple, 50), 0.8));
+    border-radius: $border-radius-xl;
+    animation: fadeIn 0.5s ease-out;
+
+    &-icon {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+
+    &-title {
+      color: map-get($projedata-purple, 700);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    &-message {
+      color: #4a5568;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  &-loading {
+    text-align: center;
+    padding: 4rem;
+
+    .spinner-border {
+      width: 4rem;
+      height: 4rem;
+      color: map-get($projedata-purple, 500);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: map-get($projedata-blue, 600);
+      font-size: 1.1rem;
+      animation: pulse 2s infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .production {
+    &-header {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+
+      h2 {
+        font-size: 1.75rem;
+
+        &::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    &-total-badge {
+      width: 100%;
+      text-align: center;
+    }
+
+    &-table {
+      thead {
+        display: none;
+      }
+
+      tbody {
+        tr {
+          display: block;
+          margin-bottom: 1rem;
+          border: 1px solid #e2e8f0 !important;
+          border-radius: $border-radius-lg;
+          background: white;
+
+          td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem !important;
+
+            &::before {
+              content: attr(data-label);
+              font-weight: 600;
+              color: map-get($projedata-purple, 700);
+              margin-right: 1rem;
+            }
+
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+      }
+
+      tfoot {
+        td {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+
+    &-info-card {
+      ul li {
+        padding: 1rem;
+      }
+    }
+  }
+}

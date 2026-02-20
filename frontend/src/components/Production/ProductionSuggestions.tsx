@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Table, Card, Spinner, Alert, Badge } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchSuggestions } from '../../store/productionSlice';
+import '../../styles/production.scss';
 
 const ProductionSuggestions: React.FC = () => {
 
@@ -16,13 +17,13 @@ const ProductionSuggestions: React.FC = () => {
 
         return (
 
-            <div className='text-center mt-5'>
+            <div className='production-loading'>
                
                 <Spinner animation='border' role='status' variant='primary'>
                     <span className='visually-hidden'> Calculando sugestões... </span>
                 </Spinner>
 
-                <p className='mt-2'> Calculando melhores sugestões de produção </p>
+                <p> Calculando melhores sugestões de produção </p>
            
             </div>
 
@@ -37,24 +38,24 @@ const ProductionSuggestions: React.FC = () => {
 
         return (
 
-            <Alert variant='info'>
-                <Alert.Heading> Sem sugestões de produção. </Alert.Heading>
-                <p> Não existem produtos que podem ser produzidos com o estoque atual. Por favor, adicione mais matérias-primas. </p>
-            </Alert>
+            <div className='production-empty-state'>
+                <h3 className='production-empty-state-title'> Sem sugestões de produção. </h3>
+                <p className='production-empty-state-message'> Não existem produtos que podem ser produzidos com o estoque atual. Por favor, adicione mais matérias-primas. </p>
+            </div>
 
         );
     }
 
     return (
 
-        <div>
+        <div className='production'>
 
-            <div className='d-flex justify-content-between align-items-center mb-4'>
+            <div className='production-header'>
                 <h2> Sugestões de produção </h2>
-                <Badge bg='success' style={{ fontSize: '1.2rem' }}> Valor total: R$ {totalValue.toFixed(2)} </Badge>
+                <Badge className='production-total-badge'> Valor total: R$ {totalValue.toFixed(2)} </Badge>
             </div>
 
-            <Card className='mb-4'>
+            <Card className='production-card'>
                 
                 <Card.Header>
                     <h5> Sugestão de produção (priorizada pelo maior valor) </h5>
@@ -62,7 +63,7 @@ const ProductionSuggestions: React.FC = () => {
 
                 <Card.Body>
 
-                    <Table striped bordered hover responsive>
+                    <Table className='production-table' responsive>
                         
                         <thead className='table-dark'>
                             
@@ -80,17 +81,17 @@ const ProductionSuggestions: React.FC = () => {
 
                                 <tr key={suggestion.productId}>
 
-                                    <td> <strong> {suggestion.productName} </strong> </td>
-                                    <td> R$ {suggestion.productPrice.toFixed(2)} </td>
-                                    <td className='text-center'> <Badge bg='info' style={{ fontSize: '1rem' }}> {suggestion.quantity} </Badge> </td>
-                                    <td className='text-sucess fw-bold'> R$ {suggestion.totalValue.toFixed(2)} </td>
+                                    <td data-label='Produto'> <strong> {suggestion.productName} </strong> </td>
+                                    <td data-label='Preço unitário'> R$ {suggestion.productPrice.toFixed(2)} </td>
+                                    <td data-label='Unidades' className='text-center'> <Badge className='production-quantity-badge'> {suggestion.quantity} </Badge> </td>
+                                    <td data-label='Valor total'> R$ {suggestion.totalValue.toFixed(2)} </td>
                                 </tr>
 
                             ))}
 
                         </tbody>
 
-                        <tfoot className='table-secondary'>
+                        <tfoot>
 
                             <tr>
                                 <td colSpan={3} className='text-end fw-bold'> Total geral: </td>
@@ -102,13 +103,13 @@ const ProductionSuggestions: React.FC = () => {
                 </Card.Body>
             </Card>
 
-            <Card>
+            <Card className='production-info-card'>
 
-                <Card.Header> Como é calculado? </Card.Header>
+                <Card.Header> <h5> Como é calculado? </h5> </Card.Header>
                 
                 <Card.Body>
                     
-                    <ul className='mb-0'>
+                    <ul>
                         <li> <strong> Prioridade: </strong> Os produtos são ordenados por preço (do maior para o menor) para maximizar o valor total </li>
                         <li> <strong> Cálculo: </strong> Para cada produto, é verificado o estoque disponível de toda a matéria prima necessária </li>
                         <li> <strong> Limite: </strong> A matéria prima com a menor quantidade disponível determina quantas unidades podem ser produzidas </li>

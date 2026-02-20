@@ -3,6 +3,7 @@ import { Table, Button, Spinner, Alert } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchProducts, deleteProduct } from '../../store/productSlice';
 import { useNavigate } from 'react-router-dom';
+import '../../styles/products.scss';
 
 const ProductList: React.FC = () => {
 
@@ -44,12 +45,12 @@ const ProductList: React.FC = () => {
 
         <div>
 
-            <div className='d-flex justify-content-between align-items-center mb-3'>       
+            <div className='products-header'>       
                 <h2> Produtos </h2>
-                <Button variant='primary' onClick={() => navigate('/products/new')}> Adicionar produto </Button>
+                <Button className='products-add-btn' onClick={() => navigate('/products/new')}> Adicionar produto </Button>
             </div>
 
-            <Table striped bordered hover>
+            <Table className='products-table'>
 
                 <thead>
                     
@@ -69,14 +70,20 @@ const ProductList: React.FC = () => {
                         
                         <tr key={product.id}>
                             
-                            <td> {product.id} </td>
-                            <td> {product.code} </td>
-                            <td> {product.name} </td>
-                            <td> {product.price.toFixed(2)} </td>
+                            <td data-label='ID'>#{product.id} </td>
+                            <td data-label='Código'>{product.code} </td>
+                            <td data-label='Nome'>{product.name} </td>
+                            <td data-label='Preço'>R$ {product.price.toFixed(2)} </td>
                             
-                            <td> <Button variant='warning' size='sm' className='me-2' onClick={() => navigate(`/products/edit/${product.id}`)}> Editar </Button></td>
-                            <td> <Button variant='danger' size='sm' onClick={() => product.id && handleDelete(product.id)}> Excluir </Button> </td>
+                            <td data-label='Ações'>
+                                
+                                <div className='products-actions'>
+                                    <Button className='products-edit-btn' size='sm' onClick={() => navigate(`/products/edit/${product.id}`)}> Editar </Button>
+                                    <Button className='products-delete-btn' size='sm' onClick={() => product.id && handleDelete(product.id)}> Excluir </Button>
+                                </div>
 
+                            </td>
+                              
                         </tr>
                     ))}
 

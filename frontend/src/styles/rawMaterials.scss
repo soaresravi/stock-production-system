@@ -1,0 +1,323 @@
+@import './theme';
+
+.raw-materials {
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 600), 
+        map-get($projedata-purple, 600),
+        map-get($projedata-green, 500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+    }
+  }
+
+  &-add-btn {
+    background: linear-gradient(135deg, 
+      map-get($projedata-blue, 500), 
+      map-get($projedata-purple, 500)) !important;
+    border: none !important;
+    padding: 0.75rem 2rem !important;
+    font-weight: 500 !important;
+    border-radius: $border-radius-lg !important;
+    transition: $transition-smooth !important;
+    box-shadow: $shadow-md;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 600), 
+        map-get($projedata-purple, 600)) !important;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &-table {
+    background: white;
+    border-radius: $border-radius-xl !important;
+    overflow: hidden !important;
+    box-shadow: $shadow-lg;
+    border: none !important;
+
+    thead {
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 50), 
+        map-get($projedata-purple, 50));
+
+      th {
+        border: none !important;
+        color: map-get($projedata-purple, 700);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        padding: 1.25rem 1rem !important;
+      }
+    }
+
+    tbody {
+      tr {
+        transition: $transition-base;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+
+        &:hover {
+          background: map-get($projedata-blue, 50);
+          transform: scale(1.01);
+          box-shadow: $shadow-md;
+          position: relative;
+          z-index: 1;
+        }
+
+        td {
+          border: none !important;
+          padding: 1rem !important;
+          vertical-align: middle;
+          color: #2d3748;
+
+          &:first-child {
+            font-weight: 600;
+            color: map-get($projedata-purple, 600);
+          }
+
+          &:nth-child(4) {
+            font-weight: 600;
+            color: map-get($projedata-green, 600);
+          }
+        }
+      }
+    }
+  }
+
+  &-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &-edit-btn {
+    background: linear-gradient(135deg, 
+      map-get($projedata-blue, 400), 
+      map-get($projedata-purple, 400)) !important;
+    border: none !important;
+    color: white !important;
+    border-radius: $border-radius-md !important;
+    transition: $transition-base !important;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 500), 
+        map-get($projedata-purple, 500)) !important;
+    }
+  }
+
+  &-delete-btn {
+    background: white !important;
+    border: 1px solid #ef4444 !important;
+    color: #ef4444 !important;
+    border-radius: $border-radius-md !important;
+    transition: $transition-base !important;
+
+    &:hover {
+      background: #ef4444 !important;
+      color: white !important;
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &-loading {
+    text-align: center;
+    padding: 4rem;
+
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      color: map-get($projedata-purple, 500);
+    }
+  }
+}
+
+.raw-material-form {
+  &-card {
+    border: none !important;
+    border-radius: $border-radius-xl !important;
+    box-shadow: $shadow-xl !important;
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  &-header {
+    background: linear-gradient(135deg, 
+      map-get($projedata-blue, 50), 
+      map-get($projedata-purple, 50)) !important;
+    border-bottom: none !important;
+    padding: 2rem !important;
+
+    h2 {
+      color: map-get($projedata-purple, 700);
+      font-weight: 700;
+      margin: 0;
+      font-size: 1.75rem;
+    }
+  }
+
+  &-body {
+    padding: 2rem !important;
+  }
+
+  &-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      color: map-get($projedata-purple, 700);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-control {
+      border: 2px solid #e2e8f0 !important;
+      border-radius: $border-radius-lg !important;
+      padding: 0.75rem 1rem !important;
+      font-size: 1rem;
+      transition: $transition-smooth !important;
+
+      &:focus {
+        border-color: map-get($projedata-blue, 500) !important;
+        box-shadow: 0 0 0 4px rgba(map-get($projedata-blue, 500), 0.1) !important;
+        outline: none !important;
+      }
+
+      &::placeholder {
+        color: #a0aec0;
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  &-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    .btn-primary {
+      background: linear-gradient(135deg, 
+        map-get($projedata-blue, 500), 
+        map-get($projedata-purple, 500)) !important;
+      border: none !important;
+      padding: 0.75rem 2rem !important;
+      border-radius: $border-radius-lg !important;
+      font-weight: 600 !important;
+      transition: $transition-smooth !important;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+        background: linear-gradient(135deg, 
+          map-get($projedata-blue, 600), 
+          map-get($projedata-purple, 600)) !important;
+      }
+    }
+
+    .btn-secondary {
+      background: white !important;
+      border: 2px solid #e2e8f0 !important;
+      color: #4a5568 !important;
+      padding: 0.75rem 2rem !important;
+      border-radius: $border-radius-lg !important;
+      font-weight: 600 !important;
+      transition: $transition-base !important;
+
+      &:hover {
+        background: #f7fafc !important;
+        border-color: #cbd5e0 !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .raw-materials {
+    &-header {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+
+      h2 {
+        font-size: 1.75rem;
+      }
+    }
+
+    &-add-btn {
+      width: 100%;
+    }
+
+    &-table {
+      thead {
+        display: none;
+      }
+
+      tbody {
+        tr {
+          display: block;
+          margin-bottom: 1rem;
+          border: 1px solid #e2e8f0 !important;
+          border-radius: $border-radius-lg;
+          background: white;
+
+          td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem !important;
+
+            &::before {
+              content: attr(data-label);
+              font-weight: 600;
+              color: map-get($projedata-purple, 700);
+              margin-right: 1rem;
+            }
+
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+      }
+    }
+
+    &-actions {
+      justify-content: flex-end;
+      width: 100%;
+    }
+  }
+
+  .raw-material-form {
+    &-actions {
+      flex-direction: column;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}

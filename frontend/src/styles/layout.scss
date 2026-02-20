@@ -1,0 +1,179 @@
+@import './theme';
+
+.navbar-custom {
+  background: linear-gradient(135deg, 
+    map-get($projedata-blue, 900), 
+    map-get($projedata-purple, 900)) !important;
+  box-shadow: $shadow-lg;
+  padding: 1rem 0 !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .navbar-brand-custom {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, 
+      map-get($projedata-blue, 300), 
+      map-get($projedata-purple, 300),
+      map-get($projedata-green, 400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: $transition-base;
+    position: relative;
+    padding: 0.5rem 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, 
+        map-get($projedata-green, 400), 
+        map-get($projedata-blue, 400));
+      transition: $transition-smooth;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    
+    &:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+  }
+
+  .navbar-nav {
+    gap: 0.5rem;
+
+    .nav-link-custom {
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-weight: 500;
+      padding: 0.5rem 1.2rem !important;
+      border-radius: $border-radius-lg;
+      transition: $transition-smooth;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      &:hover {
+        color: white !important;
+        background: rgba(255, 255, 255, 0.1);
+
+        &::before {
+          width: 300px;
+          height: 300px;
+        }
+      }
+
+      &.active {
+        color: white !important;
+        background: linear-gradient(135deg, 
+          map-get($projedata-blue, 500), 
+          map-get($projedata-purple, 500));
+        box-shadow: $shadow-md;
+      }
+    }
+  }
+}
+
+.page-container {
+  min-height: calc(100vh - 76px);
+  background: linear-gradient(135deg, 
+    rgba(map-get($projedata-blue, 50), 0.5), 
+    rgba(map-get($projedata-purple, 50), 0.5));
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(map-get($projedata-blue, 200), 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(map-get($projedata-purple, 200), 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, rgba(map-get($projedata-green, 200), 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  &-content {
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.5s ease-out;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-custom {
+    .navbar-nav {
+      margin-top: 1rem;
+      
+      .nav-link-custom {
+        text-align: center;
+        margin: 0.25rem 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-custom {
+    .navbar-brand-custom {
+      font-size: 1.2rem;
+    }
+  }
+
+  .page-container {
+    padding: 1rem 0;
+  }
+}

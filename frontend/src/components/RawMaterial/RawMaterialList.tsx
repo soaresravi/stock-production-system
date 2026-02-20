@@ -3,6 +3,7 @@ import { Table, Button, Spinner, Alert } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchRawMaterials, deleteRawMaterial } from '../../store/rawMaterialSlice';
 import { useNavigate } from 'react-router-dom';
+import '../../styles/rawMaterials.scss';
 
 const RawMaterialList: React.FC = () => {
 
@@ -41,14 +42,14 @@ const RawMaterialList: React.FC = () => {
 
     return (
 
-        <div>
+        <div className='raw-materials'>
 
-            <div className='d-flex justify-content-between align-items-center mb-3'>
+            <div className='raw-materials-header'>
                 <h2> Matérias-primas </h2>
-                <Button variant='primary' onClick={() => navigate('/raw-materials/new')}> Adicionar matéria-prima </Button>
+                <Button className='raw-materials-add-btn' onClick={() => navigate('/raw-materials/new')}> Adicionar matéria-prima </Button>
             </div>
 
-            <Table striped bordered hover>
+            <Table className='raw-materials-table'>
 
                 <thead>
 
@@ -68,13 +69,19 @@ const RawMaterialList: React.FC = () => {
 
                         <tr key={material.id}>
 
-                            <td> {material.id} </td>
-                            <td> {material.name} </td>
-                            <td> {material.code} </td>
-                            <td> {material.stockQuantity} </td>
-
-                            <td> <Button variant='warning' size='sm' className='me-2' onClick={() => navigate(`/raw-materials/edit/${material.id}`)}> Editar </Button> </td>
-                            <td> <Button variant='danger' size='sm' onClick={() => material.id && handleDelete(material.id)}> Excluir </Button> </td>
+                            <td data-label='ID'>#{material.id} </td>
+                            <td data-label='Código'> {material.code} </td>
+                            <td data-label='Nome'> {material.name} </td>
+                            <td data-label='Quantidade'>{material.stockQuantity}</td>
+                            
+                            <td data-label='Ações'>
+                                
+                                <div className='raw-materials-actions'>
+                                    <Button className='raw-materials-edit-btn' size='sm' onClick={() => navigate(`/raw-materials/edit/${material.id}`)}> Editar </Button>
+                                    <Button className='raw-materials-delete-btn' size='sm' onClick={() => material.id && handleDelete(material.id)}> Excluir </Button> 
+                                </div>
+                            
+                            </td>
                        
                         </tr>
                     ))}
