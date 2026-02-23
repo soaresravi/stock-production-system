@@ -120,8 +120,8 @@ Antes de começar, você precisará ter instalado:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/soaresravi/estoque-producao-system.git
-cd estoque-producao-system
+git clone https://github.com/soaresravi/stock-production-system.git
+cd stock-production-system
 ```
 
 ### 2. Configure o Banco de Dados
